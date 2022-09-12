@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import logo from "./logo.svg";
+import "./App.css";
+import Nav from "./views/nav";
+import { useState } from "react";
+import Todo from "./views/todo";
+const App = () => {
+  let [todos, setTodos] = useState([{ job: "haha" }, { job: "haha2" }]);
+  let [todo, setTodo] = useState({ job: "" });
+  let handleInput = async (e) => {
+    setTodo({ job: e.target.value });
+    console.log(todo);
+  };
+  let handleOnSave = () => {
+    if (todo.job) {
+      let copy = [...todos, todo];
+      console.log(copy);
+      setTodos(copy);
+      setTodo({ job: "" });
+    }
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="todos"></div>
+      <Nav></Nav>
+
+      <div className="input-div">
+        <input
+          value={todo.job}
+          onChange={(e) => {
+            handleInput(e);
+          }}
+        ></input>
+        <button
+          onClick={() => {
+            handleOnSave();
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          save
+        </button>
+        <Todo todos={todos}></Todo>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
