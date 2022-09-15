@@ -1,11 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Nav from "./views/nav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Todo from "./views/todo";
+import Table from "./views/table";
+var _ = require("lodash");
 const App = () => {
   let [todos, setTodos] = useState([{ job: "haha" }, { job: "haha2" }]);
   let [todo, setTodo] = useState({ job: "" });
+  useEffect(() => {
+    console.log("hehehe");
+  }, []);
   let handleInput = async (e) => {
     setTodo({ job: e.target.value });
     console.log(todo);
@@ -18,12 +23,18 @@ const App = () => {
       setTodo({ job: "" });
     }
   };
+  let handleDele = (deleTodo) => {
+    var afterDeleTodos = _.remove(todos, (todo) => {
+      return todo != deleTodo;
+    });
+    setTodos(afterDeleTodos);
+  };
   return (
     <div className="App">
       <div className="todos"></div>
       <Nav></Nav>
 
-      <div className="input-div">
+      {/* <div className="input-div">
         <input
           value={todo.job}
           onChange={(e) => {
@@ -37,8 +48,9 @@ const App = () => {
         >
           save
         </button>
-        <Todo todos={todos}></Todo>
-      </div>
+        <Todo todos={todos} handleDele={handleDele}></Todo>
+      </div> */}
+      <Table></Table>
     </div>
   );
 };
