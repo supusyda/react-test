@@ -3,25 +3,11 @@ import "./table.css";
 import { useEffect, useState, CSSProperties } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import axios from "axios";
-
+import useFetch from "../customize/useFetch";
 const Table = () => {
-  let [res, setRes] = useState([]);
-  let [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let coviddata = async () => {
-      let respones = await axios.get(
-        "https://api.covid19api.com/country/vietnam?from=2021-10-01T00%3A00%3A00Z&to=2021-10-20T00%3A00%3A00Z"
-      );
-      return respones;
-    };
-    coviddata().then((data) => {
-      setRes(data.data);
-      setInterval(() => {
-        setLoading(false);
-      }, 3000);
-    });
-  }, []);
+  const url =
+    "https://api.covid19api.com/country/vietnam?from=2021-10-01T00%3A00%3A00Z&to=2021-10-20T00%3A00%3A00Z";
+  const { res, loading } = useFetch(url);
   console.log(res);
   return (
     <>
