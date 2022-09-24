@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Outlet, Link, NavLink } from "react-router-dom";
 const nav = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,44 +16,68 @@ const nav = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <a className="nav-link">
-              Home <span className="sr-only">(current)</span>
-            </a>
-          </li>
+      <div
+        className="collapse navbar-collapse justify-content-between"
+        id="navbarSupportedContent"
+      >
+        <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
-            </a>
-          </li>
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
             >
-              Dropdown
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </div>
+              Home
+            </NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link disabled" href="#">
+            <NavLink
+              to="/todo"
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              ToDo
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/count"
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              Count
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              Blogs
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              to="/youtubesreach"
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              YouTubeSreach
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <a
+              className="nav-link disabled"
+              href="#"
+              tabindex="-1"
+              aria-disabled="true"
+            >
               Disabled
             </a>
           </li>
